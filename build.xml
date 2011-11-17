@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="MC2" basedir="." default="jar">
+
+	<!-- Set variables for build directories -->
+	<property name="src.dir" value="Source" />
+	<property name="build.dir" value="Build" />
+
+	<target name="clean" description="Clean up">
+		<echo>Cleaning up...</echo>
+		<delete dir="${build.dir}" />
+	</target>
+
+	<target name="build" depends="clean" description="Build project">
+		<echo>Compiling source...</echo>
+		<mkdir dir="${build.dir}/Classes" />
+		<javac srcdir="${src.dir}" destdir="${build.dir}/Classes" />
+	</target>
+
+	<target name="jar" depends="build">
+		<mkdir dir="${build.dir}" />
+		<jar destfile="${build.dir}/libMC2.jar" compress="true" basedir="${build.dir}/Classes" />
+	</target>
+
+</project>
